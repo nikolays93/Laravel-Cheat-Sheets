@@ -25,6 +25,9 @@ Route::match($methods, 'article/{id}', function ($id) {
     return view('article.element', compact(['id']));
 })->name('article.element');
 
+// При обращении к article (без указания ID), отправить на список (301 Moved permanently, default: 302 Found)
+// Эквивалентно: Route::permanentRedirect('/article', '/articles');
+Route::redirect('/article', '/articles', 302);
 
 /**
  * Получить ссылку на статью

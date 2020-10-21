@@ -14,8 +14,8 @@
 
 use App\Http\Controllers\ArticleController;
 
-// Добавить запрос /article (запускать метод index контроллера ArticleController)
-Route::get('article/', [ArticleController::class, 'index'])->name('article.list');
+// Добавить запрос /articles (запускать метод index контроллера ArticleController)
+Route::get('articles/', [ArticleController::class, 'list'])->name('article.list');
 
 /** @var array Методы запросов */
 $methods = ['get', 'post', 'put', 'patch', 'delete', 'options'];
@@ -23,7 +23,8 @@ $methods = ['get', 'post', 'put', 'patch', 'delete', 'options'];
 Route::match($methods, 'article/{id}', function ($id) {
     // Передать параметр $id в подключаемый шаблон (view: resources/views/article/element.blade.php)
     return view('article.element', compact(['id']));
-})->name('article.show');
+})->name('article.element');
+
 
 /**
  * Получить ссылку на статью
@@ -34,5 +35,5 @@ Route::match($methods, 'article/{id}', function ($id) {
 function getArticlePermalink($id) {
     // Сгенерировать и вернуть ссылку запроса с именем article.show
     // Если передать не входящий в запрос параметр (search) он добавится как get запрос
-    return route('article.show', ['id' => $id, 'search' => 'rocket']);
+    return route('article.element', ['id' => $id, 'search' => 'rocket']);
 }

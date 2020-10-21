@@ -20,7 +20,10 @@ Route::get('article/', [ArticleController::class, 'index'])->name('article.list'
 /** @var array Методы запросов */
 $methods = ['get', 'post', 'put', 'patch', 'delete', 'options'];
 // Добавить запрос с методами и отправить параметр в функцию/метод (к примеру /article/2 вернет 2)
-Route::match($methods, 'article/{id}', function ($id) { return $id; })->name('article.show');
+Route::match($methods, 'article/{id}', function ($id) {
+    // Передать параметр $id в подключаемый шаблон (view: resources/views/article/element.blade.php)
+    return view('article.element', compact(['id']));
+})->name('article.show');
 
 /**
  * Получить ссылку на статью

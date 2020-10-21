@@ -7,6 +7,9 @@
  *
  * Сгенерировать контроллер ArticleController
  * $ php artisan make::controller ArticleController
+ *
+ * Показать таблицу всех возможных запросов
+ * $ php artisan route:list
  */
 
 use App\Http\Controllers\ArticleController;

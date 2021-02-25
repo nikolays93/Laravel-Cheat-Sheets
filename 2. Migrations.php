@@ -9,18 +9,22 @@
  * $ php artisan make:migration create_articles_table
  *
  * Откатить все миграции (artisan migrate:reset) и запустить (artisan migrate)
- * $ php artisan migrate:refrash
+ * $ php artisan migrate:refrash || migrate:frash
  *
  * Откатить 2 крайние миграции
  * $ php artisan migrate:rollback --step=2
  */
+
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 class CreateArticlesTable extends Migration
 {
     public function up()
     {
         Schema::create('articles', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id'); // ->id();
             $table->string('name');
             $table->text('text');
             $table->timestamps();
